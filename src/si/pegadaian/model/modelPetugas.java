@@ -96,8 +96,8 @@ public class modelPetugas {
             +",alamat= '"+getAlamatModel()+"'"
             +",username='"+getUsernameModel()+"'"
             +",password='"+getPasswordModel()+"'"
-            +",level="+getLevelModel()
-            +"' WHERE Ktp='"+getNipModel()+"'";
+            +",level='"+getLevelModel()
+            +"' WHERE Nip='"+getNipModel()+"'";
     try {
          PreparedStatement eksekusi=koneksi.getKoneksi().prepareStatement(sql);
          eksekusi.execute();

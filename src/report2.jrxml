@@ -74,7 +74,7 @@
 			<staticText>
 				<reportElement uuid="06c12dd6-7c68-4cb9-8449-7b27d5bb80b7" style="Column header" x="0" y="0" width="138" height="15" forecolor="#736343"/>
 				<textElement/>
-				<text><![CDATA[Ktp]]></text>
+				<text><![CDATA[No Ktp]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="eb250089-41ca-4709-a02b-a552e11465e2" style="Column header" x="138" y="0" width="138" height="15" forecolor="#736343"/>
@@ -89,7 +89,7 @@
 			<staticText>
 				<reportElement uuid="4829c45e-19ca-479b-b9d7-7ea1ea47c233" style="Column header" x="414" y="0" width="138" height="15" forecolor="#736343"/>
 				<textElement/>
-				<text><![CDATA[Hp]]></text>
+				<text><![CDATA[Nomor Hp]]></text>
 			</staticText>
 		</band>
 	</columnHeader>

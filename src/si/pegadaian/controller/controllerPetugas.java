@@ -34,6 +34,7 @@ public class controllerPetugas {
         mP=new modelPetugas();
         mP.setNipModel(Integer.parseInt((vP.getNoKtpTF().getText())));
         mP.setNamaModel(vP.getNamaTF().getText());
+        mP.setAlamatModel(vP.getAlamatTA().getText());
         mP.setUsernameModel(vP.getUsernameTF().getText());
         mP.setPasswordModel(vP.getPasswordTF().getText());
         switch (vP.getHakAksesCB().getSelectedIndex()) {
@@ -52,9 +53,17 @@ public class controllerPetugas {
         mP=new modelPetugas();
         mP.setNipModel(Integer.parseInt((vP.getNoKtpTF().getText())));
         mP.setNamaModel(vP.getNamaTF().getText());
+        mP.setAlamatModel(vP.getAlamatTA().getText());
         mP.setUsernameModel(vP.getUsernameTF().getText());
         mP.setPasswordModel(vP.getPasswordTF().getText());
-        
+        switch (vP.getHakAksesCB().getSelectedIndex()) {
+                case 1 :
+                mP.setLevelModel("Admin");
+                break;
+                case 2:
+                mP.setLevelModel("Kasir");
+                break;
+            }
         mP.updateDataPetugas();
     }
     

@@ -42,7 +42,7 @@ public class controllerBarang {
     
     public void updateBarang(){
          mB=new modelBarang();
-//         mB.setKodeBarangModel(Integer.parseInt(vB.getKodeBarangTF().getText()));
+         mB.setKodeBarangModel(Integer.parseInt(vB.getKodeBarangTF().getText()));
         mB.setNamaBarangModel(vB.getNamaBarangTF().getText());
         mB.setTypeModel(vB.getTypeTF().getText());
         mB.setWarnaModel(vB.getWarnaTF().getText());

@@ -51,6 +51,7 @@ public class viewMaster extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setResizable(true);
 
+        customerBT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/User-Group-icon (1).png"))); // NOI18N
         customerBT.setText("Customer");
         customerBT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -63,6 +64,7 @@ public class viewMaster extends javax.swing.JInternalFrame {
             }
         });
 
+        barangBT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/System-Package-icon (1).png"))); // NOI18N
         barangBT.setText("Barang");
         barangBT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -75,6 +77,7 @@ public class viewMaster extends javax.swing.JInternalFrame {
             }
         });
 
+        petugasBT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Administrator-icon (1).png"))); // NOI18N
         petugasBT.setText("Petugas");
         petugasBT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -90,7 +93,7 @@ public class viewMaster extends javax.swing.JInternalFrame {
         );
         masterPanelLayout.setVerticalGroup(
             masterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 226, Short.MAX_VALUE)
+            .addGap(0, 212, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -104,7 +107,7 @@ public class viewMaster extends javax.swing.JInternalFrame {
                 .addComponent(barangBT)
                 .addGap(18, 18, 18)
                 .addComponent(petugasBT)
-                .addContainerGap(441, Short.MAX_VALUE))
+                .addContainerGap(333, Short.MAX_VALUE))
             .addComponent(masterPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(

@@ -34,6 +34,7 @@ public class viewTransaksi extends javax.swing.JInternalFrame {
         setClosable(true);
         setMaximizable(true);
 
+        transaksiBT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/transaksi 2.png"))); // NOI18N
         transaksiBT.setText("Transaksi");
         transaksiBT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -41,6 +42,7 @@ public class viewTransaksi extends javax.swing.JInternalFrame {
             }
         });
 
+        dataTransaksiBT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/bill-32.png"))); // NOI18N
         dataTransaksiBT.setText("Data Transaksi");
         dataTransaksiBT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -56,7 +58,7 @@ public class viewTransaksi extends javax.swing.JInternalFrame {
         );
         transaksiPanelLayout.setVerticalGroup(
             transaksiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 215, Short.MAX_VALUE)
+            .addGap(0, 185, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -68,7 +70,7 @@ public class viewTransaksi extends javax.swing.JInternalFrame {
                 .addComponent(transaksiBT)
                 .addGap(46, 46, 46)
                 .addComponent(dataTransaksiBT)
-                .addContainerGap(295, Short.MAX_VALUE))
+                .addContainerGap(207, Short.MAX_VALUE))
             .addComponent(transaksiPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(

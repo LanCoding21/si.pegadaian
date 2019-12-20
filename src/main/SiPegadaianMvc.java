@@ -18,14 +18,14 @@ public class SiPegadaianMvc {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-//        appUtama utama=new appUtama();
-//        utama.setVisible(true);
-//        view vM=new viewMaster();
-//        vM.setVisible(true);
         appUtama utama=new appUtama();
         utama.setVisible(true);
-//        viewMaster vM=new viewMaster();
+//        view vM=new viewMaster();
 //        vM.setVisible(true);
+//        wallpaper wal=new wallpaper();
+//        wal.setVisible(true);
+        
+      
     }
     
 }

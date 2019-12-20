@@ -32,7 +32,7 @@
               <Component id="barangBT" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="petugasBT" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="441" max="32767" attributes="0"/>
+              <EmptySpace pref="333" max="32767" attributes="0"/>
           </Group>
           <Component id="masterPanel" alignment="0" max="32767" attributes="0"/>
       </Group>
@@ -55,6 +55,9 @@
   <SubComponents>
     <Component class="javax.swing.JButton" name="customerBT">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/icon/User-Group-icon (1).png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Customer"/>
       </Properties>
       <Events>
@@ -64,6 +67,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="barangBT">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/icon/System-Package-icon (1).png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Barang"/>
       </Properties>
       <Events>
@@ -73,6 +79,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="petugasBT">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/icon/Administrator-icon (1).png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Petugas"/>
       </Properties>
       <Events>
@@ -89,7 +98,7 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="226" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="212" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>

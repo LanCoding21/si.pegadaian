@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="93790d65-ea85-4fed-a346-c809770e5479">
 	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.x" value="10"/>
 	<property name="ireport.y" value="0"/>
 	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
 	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
@@ -80,7 +80,7 @@
 			<staticText>
 				<reportElement uuid="262746ea-b65e-44cb-8a9d-329431ce1c4c" style="Column header" x="0" y="0" width="92" height="15" forecolor="#736343"/>
 				<textElement/>
-				<text><![CDATA[Nip]]></text>
+				<text><![CDATA[No Ktp]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="eeb78eb9-3d54-437d-8e1a-1ad1297870af" style="Column header" x="92" y="0" width="92" height="15" forecolor="#736343"/>
@@ -90,22 +90,22 @@
 			<staticText>
 				<reportElement uuid="8ab27f51-6f52-48e7-b1f8-6dd75034a63b" style="Column header" x="184" y="0" width="92" height="15" forecolor="#736343"/>
 				<textElement/>
-				<text><![CDATA[alamat]]></text>
+				<text><![CDATA[Alamat]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="405c2408-6835-4925-b0a6-2f61fe216a18" style="Column header" x="276" y="0" width="92" height="15" forecolor="#736343"/>
 				<textElement/>
-				<text><![CDATA[username]]></text>
+				<text><![CDATA[Username]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="291648f7-f26f-4b53-94e0-9212625e5beb" style="Column header" x="368" y="0" width="92" height="15" forecolor="#736343"/>
 				<textElement/>
-				<text><![CDATA[password]]></text>
+				<text><![CDATA[Password]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="6b400f9e-e1f1-4af4-b6eb-2d48614a3f84" style="Column header" x="460" y="0" width="92" height="15" forecolor="#736343"/>
 				<textElement/>
-				<text><![CDATA[level]]></text>
+				<text><![CDATA[Level]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
