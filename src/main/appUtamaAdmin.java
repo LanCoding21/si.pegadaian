@@ -6,6 +6,7 @@
 package main;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import si.pegadaian.view.viewLoginInternal;
 import si.pegadaian.view.viewMaster;
 import si.pegadaian.view.viewTransaksi;
@@ -19,6 +20,9 @@ public class appUtamaAdmin extends javax.swing.JFrame {
     /**
      * Creates new form appUtama
      */
+    viewMaster vM= new viewMaster();
+    viewTransaksi vT= new viewTransaksi();
+    
     public appUtamaAdmin() {
         initComponents();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -153,14 +157,14 @@ public class appUtamaAdmin extends javax.swing.JFrame {
 
     private void masterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_masterMouseClicked
         // TODO add your handling code here:
-        viewMaster vM= new viewMaster();
+        this.desktopUtama.remove(vT);
         this.desktopUtama.add(vM);
         vM.show();
     }//GEN-LAST:event_masterMouseClicked
 
     private void transaksiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_transaksiMouseClicked
         // TODO add your handling code here:
-        viewTransaksi vT= new viewTransaksi();
+        this.desktopUtama.remove(vM);
         this.desktopUtama.add(vT);
         vT.show();
     }//GEN-LAST:event_transaksiMouseClicked
@@ -172,8 +176,14 @@ public class appUtamaAdmin extends javax.swing.JFrame {
 
     private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
         // TODO add your handling code here:
-        dispose();
-        new main.appUtama().setVisible(true);
+        int opsi =JOptionPane.showConfirmDialog(null, "Yakin Logout?");
+        switch(opsi){
+            case JOptionPane.YES_OPTION:
+                dispose();
+                new main.appUtama().setVisible(true);
+                
+        }
+        
     }//GEN-LAST:event_jMenu3MouseClicked
 
     /**
