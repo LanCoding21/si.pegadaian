@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -74,7 +76,6 @@ public class viewLoginInternal extends javax.swing.JInternalFrame {
         batalBT = new javax.swing.JButton();
         passwordPF = new javax.swing.JPasswordField();
 
-        setBackground(new java.awt.Color(0, 204, 204));
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
@@ -93,6 +94,7 @@ public class viewLoginInternal extends javax.swing.JInternalFrame {
 
         hakAkses.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Pilih--", "Admin", "Kasir" }));
 
+        loginBT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/account-login-32.png"))); // NOI18N
         loginBT.setText("Login");
         loginBT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,6 +102,7 @@ public class viewLoginInternal extends javax.swing.JInternalFrame {
             }
         });
 
+        batalBT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/green-cross-icon (2).png"))); // NOI18N
         batalBT.setText("Batal");
         batalBT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -135,7 +138,7 @@ public class viewLoginInternal extends javax.swing.JInternalFrame {
                                         .addComponent(batalBT))
                                     .addComponent(hakAkses, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(passwordPF))))))
-                .addContainerGap(98, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,7 +161,7 @@ public class viewLoginInternal extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(loginBT)
                     .addComponent(batalBT))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         pack();
