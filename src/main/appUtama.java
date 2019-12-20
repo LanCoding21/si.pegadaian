@@ -5,7 +5,9 @@
  */
 package main;
 
+import java.awt.Container;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import si.pegadaian.view.viewLoginInternal;
 import si.pegadaian.view.viewMaster;
 import si.pegadaian.view.viewTransaksi;
@@ -19,9 +21,15 @@ public class appUtama extends javax.swing.JFrame {
     /**
      * Creates new form appUtama
      */
+    home home= new home();
     public appUtama() {
         initComponents();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
+        
+        this.desktopUtama.add(home);
+        home.show();
+        
     }
 
     /**
@@ -51,11 +59,11 @@ public class appUtama extends javax.swing.JFrame {
         desktopUtama.setLayout(desktopUtamaLayout);
         desktopUtamaLayout.setHorizontalGroup(
             desktopUtamaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 1349, Short.MAX_VALUE)
         );
         desktopUtamaLayout.setVerticalGroup(
             desktopUtamaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 249, Short.MAX_VALUE)
+            .addGap(0, 867, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jjLayout = new javax.swing.GroupLayout(jj);
@@ -64,16 +72,16 @@ public class appUtama extends javax.swing.JFrame {
             jjLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(desktopUtama, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jjLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 623, Short.MAX_VALUE)
+                .addGap(310, 310, 310)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jjLayout.setVerticalGroup(
             jjLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jjLayout.createSequentialGroup()
-                .addGap(6, 6, 6)
+                .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(desktopUtama, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -147,6 +155,7 @@ public class appUtama extends javax.swing.JFrame {
 
     private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
         // TODO add your handling code here:
+        this.desktopUtama.remove(home);
         viewLoginInternal login= new viewLoginInternal();
         this.desktopUtama.add(login);
         login.show();
