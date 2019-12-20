@@ -72,14 +72,14 @@
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement uuid="b05ab60c-d710-4f38-abb8-9f24d874a154" style="Column header" x="0" y="0" width="138" height="15" forecolor="#736343"/>
+				<reportElement uuid="b05ab60c-d710-4f38-abb8-9f24d874a154" style="Column header" x="2" y="0" width="138" height="15" forecolor="#736343"/>
 				<textElement/>
-				<text><![CDATA[Kode_barang]]></text>
+				<text><![CDATA[Kode Barang]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="8e6a71b0-cc46-49fd-bf3c-7d30718d53ab" style="Column header" x="138" y="0" width="138" height="15" forecolor="#736343"/>
 				<textElement/>
-				<text><![CDATA[Nama_barang]]></text>
+				<text><![CDATA[Nama Barang]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="00d1798b-8dc7-4d62-9acb-033e2d6846ca" style="Column header" x="276" y="0" width="138" height="15" forecolor="#736343"/>
