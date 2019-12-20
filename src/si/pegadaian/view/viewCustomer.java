@@ -38,6 +38,7 @@ public class viewCustomer extends javax.swing.JInternalFrame {
      */
     public controllerCustomer cC;
     public DefaultTableModel model;
+    public String sql="";
     public viewCustomer() {
         initComponents();
         cC= new controllerCustomer(this);
@@ -49,7 +50,7 @@ public class viewCustomer extends javax.swing.JInternalFrame {
         model.addColumn("No Hp");
         model.addColumn("Alamat");
         
-        tampilDataCustomer();
+        tampilDataCustomer("");
         
     }
 
@@ -73,11 +74,15 @@ public class viewCustomer extends javax.swing.JInternalFrame {
         return noTelpTF;
     }
     
-    public void tampilDataCustomer(){
+    public void tampilDataCustomer(String data){
         model.getDataVector().removeAllElements();
         model.fireTableDataChanged();
         
-        String sql= "SELECT * FROM nasabah";
+        if(data.equals("")){
+            sql= "SELECT * FROM nasabah";
+        }else{
+            sql="SELECT * FROM nasabah WHERE Nama LIKE '"+data+"%'";
+        }
         
         try{
             Statement stat=(Statement) koneksiDatabase.getKoneksi().createStatement();
@@ -199,6 +204,12 @@ public class viewCustomer extends javax.swing.JInternalFrame {
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel1MouseClicked(evt);
+            }
+        });
+
+        cariTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cariTFKeyPressed(evt);
             }
         });
 
@@ -327,7 +338,7 @@ public class viewCustomer extends javax.swing.JInternalFrame {
     private void saveBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBTActionPerformed
         // TODO add your handling code here:
         cC.simpanCustomer();
-        tampilDataCustomer();
+        tampilDataCustomer("");
         cC.bersihkan();
     }//GEN-LAST:event_saveBTActionPerformed
 
@@ -339,7 +350,7 @@ public class viewCustomer extends javax.swing.JInternalFrame {
     private void updateBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBTActionPerformed
         // TODO add your handling code here:
         cC.updateCustomer();
-        tampilDataCustomer();
+        tampilDataCustomer("");
         cC.bersihkan();
     }//GEN-LAST:event_updateBTActionPerformed
 
@@ -352,7 +363,7 @@ public class viewCustomer extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         cC.deleteCustomer();
         cC.bersihkan();
-        tampilDataCustomer();
+        tampilDataCustomer("");
     }//GEN-LAST:event_deleteBTActionPerformed
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
@@ -374,6 +385,11 @@ public class viewCustomer extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_printTFActionPerformed
+
+    private void cariTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cariTFKeyPressed
+        // TODO add your handling code here:
+        tampilDataCustomer(cariTF.getText());
+    }//GEN-LAST:event_cariTFKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

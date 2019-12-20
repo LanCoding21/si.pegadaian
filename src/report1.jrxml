@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="93790d65-ea85-4fed-a346-c809770e5479">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
 	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
 	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
 	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
@@ -41,30 +44,26 @@
 				<imageExpression><![CDATA["coffee.jpg"]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement uuid="69b8e219-90b2-4723-a068-bfc129091158" style="Title" x="170" y="0" width="263" height="62"/>
-				<textElement verticalAlignment="Middle">
-					<font pdfFontName="Times-Roman"/>
+				<reportElement uuid="c10f3bdf-6edf-4c11-9be0-ebddf98126c3" style="Title" x="146" y="16" width="314" height="40"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="24" pdfFontName="Times-Roman"/>
 				</textElement>
-				<text><![CDATA[Coffee Title]]></text>
+				<text><![CDATA[PT. Pegadaian (PERSERO)]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="ee7b038d-4936-45ee-9d1d-1fb57d7f1948" style="SubTitle" x="219" y="62" width="196" height="22"/>
-				<textElement>
+				<reportElement uuid="6c97667b-637c-4c4f-b7a7-87dfe9b4b538" style="SubTitle" x="148" y="78" width="299" height="38"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="24" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Kabupaten Karawang]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6c97667b-637c-4c4f-b7a7-87dfe9b4b538" style="SubTitle" x="192" y="56" width="196" height="22"/>
+				<textElement textAlignment="Center">
 					<font fontName="Times New Roman" pdfFontName="Times-Roman"/>
 				</textElement>
-				<text><![CDATA[Coffee SubTitle]]></text>
+				<text><![CDATA[Cabang Cilamaya]]></text>
 			</staticText>
-			<staticText>
-				<reportElement uuid="7c57f6b6-8a17-4a2d-a734-b63e8677241e" x="172" y="94" width="383" height="42"/>
-				<textElement textAlignment="Right">
-					<font size="10"/>
-				</textElement>
-				<text><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce auctor purus gravida arcu aliquam mattis. Donec et nulla libero, ut varius massa. Nulla sed turpis elit. Etiam aliquet mauris a ligula hendrerit in auctor leo lobortis.]]></text>
-			</staticText>
-			<image>
-				<reportElement uuid="c8ba4ec3-520a-49b1-9083-c85840867842" x="433" y="-115" width="267" height="209"/>
-				<imageExpression><![CDATA["coffee_stain.png"]]></imageExpression>
-			</image>
 		</band>
 	</title>
 	<pageHeader>

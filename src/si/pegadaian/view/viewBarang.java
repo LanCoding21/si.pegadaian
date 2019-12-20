@@ -5,13 +5,23 @@
  */
 package si.pegadaian.view;
 
+import java.io.InputStream;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 import si.pegadaian.controller.controllerBarang;
 import si.pegadaian.db.koneksiDatabase;
 
@@ -26,6 +36,7 @@ public class viewBarang extends javax.swing.JInternalFrame {
      */
     public controllerBarang cB;
     public DefaultTableModel model;
+    private String sql="";
     public viewBarang() {
         initComponents();
         cB=new controllerBarang(this);
@@ -37,7 +48,7 @@ public class viewBarang extends javax.swing.JInternalFrame {
         model.addColumn("Type Barang");
         model.addColumn("Warna Barang");
         
-        tampilDataBarang();
+        tampilDataBarang("");
     }
 
     public JTextField getNamaBarangTF() {
@@ -58,11 +69,16 @@ public class viewBarang extends javax.swing.JInternalFrame {
     
     
     
-    public void tampilDataBarang(){
+    public void tampilDataBarang(String data){
         model.getDataVector().removeAllElements();
         model.fireTableDataChanged();
         
-        String sql= "SELECT * FROM barang";
+        if(data.equals("")){
+            sql= "SELECT * FROM barang";
+        }else{
+            sql="SELECT * FROM barang WHERE Nama_barang LIKE '"+data+"%'";
+        }
+        
         
         try{
             Statement stat=(Statement) koneksiDatabase.getKoneksi().createStatement();
@@ -173,12 +189,28 @@ public class viewBarang extends javax.swing.JInternalFrame {
         jLabel4.setText("Warna");
 
         printTF.setText("Print");
+        printTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printTFActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Form Data Barang");
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel1MouseClicked(evt);
+            }
+        });
+
+        cariBarangTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cariBarangTFActionPerformed(evt);
+            }
+        });
+        cariBarangTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cariBarangTFKeyPressed(evt);
             }
         });
 
@@ -300,21 +332,21 @@ public class viewBarang extends javax.swing.JInternalFrame {
     private void saveBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBTActionPerformed
         // TODO add your handling code here:
         cB.simpanBarang();
-        tampilDataBarang();
+        tampilDataBarang("");
         cB.bersihkan();
     }//GEN-LAST:event_saveBTActionPerformed
 
     private void updateBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBTActionPerformed
         // TODO add your handling code here:
         cB.updateBarang();
-        tampilDataBarang();
+        tampilDataBarang("");
         cB.bersihkan();
     }//GEN-LAST:event_updateBTActionPerformed
 
     private void deleteBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBTActionPerformed
         // TODO add your handling code here:
         cB.deleteBarang();
-        tampilDataBarang();
+        tampilDataBarang("");
         cB.bersihkan();
     }//GEN-LAST:event_deleteBTActionPerformed
 
@@ -332,6 +364,31 @@ public class viewBarang extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void printTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printTFActionPerformed
+        // TODO add your handling code here:
+        try{
+            koneksiDatabase print=new koneksiDatabase();
+            Connection con=print.getKoneksi();
+            InputStream input=getClass().getResourceAsStream("/report3.jrxml");
+            JasperDesign design=JRXmlLoader.load(input);
+            JasperReport report=JasperCompileManager.compileReport(design);
+            JasperPrint jp=JasperFillManager.fillReport(report,null, con);
+            JasperViewer.viewReport(jp,false);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_printTFActionPerformed
+
+    private void cariBarangTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariBarangTFActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_cariBarangTFActionPerformed
+
+    private void cariBarangTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cariBarangTFKeyPressed
+        // TODO add your handling code here:
+        tampilDataBarang(cariBarangTF.getText());
+    }//GEN-LAST:event_cariBarangTFKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

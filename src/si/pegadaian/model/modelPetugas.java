@@ -77,7 +77,7 @@ public class modelPetugas {
     }
     
     public void simpanDataPetugas(){
-        String sql=("INSERT INTO petugas (Nip, Nama, alamat, username, password, Hakakses)"
+        String sql=("INSERT INTO petugas (Nip, Nama, alamat, username, password, level)"
                     +"VALUES('"+getNipModel()+"', '"+getNamaModel()+"'"
                     + ", '"+getAlamatModel()+"','"+getUsernameModel()+"','"+getPasswordModel()+"'"
                     + ",'"+getLevelModel()+"')");
@@ -96,7 +96,7 @@ public class modelPetugas {
             +",alamat= '"+getAlamatModel()+"'"
             +",username='"+getUsernameModel()+"'"
             +",password='"+getPasswordModel()+"'"
-            +",Hakakses="+getLevelModel()
+            +",level="+getLevelModel()
             +"' WHERE Ktp='"+getNipModel()+"'";
     try {
          PreparedStatement eksekusi=koneksi.getKoneksi().prepareStatement(sql);

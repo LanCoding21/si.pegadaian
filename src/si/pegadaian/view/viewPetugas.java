@@ -39,6 +39,7 @@ public class viewPetugas extends javax.swing.JInternalFrame {
      */
     public controllerPetugas cP;
     public DefaultTableModel model;
+    public String sql="";
     public viewPetugas() {
         initComponents();
         cP=new controllerPetugas(this);
@@ -52,7 +53,7 @@ public class viewPetugas extends javax.swing.JInternalFrame {
         model.addColumn("Password");
         model.addColumn("Level");
         
-        tampilDataPetugas();
+        tampilDataPetugas("");
     }
 
     public JTextField getNamaTF() {
@@ -79,11 +80,15 @@ public class viewPetugas extends javax.swing.JInternalFrame {
         return usernameTF;
     }
     
-    public void tampilDataPetugas(){
+    public void tampilDataPetugas(String data){
         model.getDataVector().removeAllElements();
         model.fireTableDataChanged();
         
-       String sql= "SELECT * FROM petugas";
+       if(data.equals("")){
+            sql= "SELECT * FROM petugas";
+        }else{
+            sql="SELECT * FROM petugas WHERE Nama LIKE '"+data+"%'";
+        }
         
         try{
             Statement stat=(Statement) koneksiDatabase.getKoneksi().createStatement();
@@ -98,7 +103,7 @@ public class viewPetugas extends javax.swing.JInternalFrame {
                 hasil[2]=res.getString("alamat");
                 hasil[3]=res.getString("username");
                 hasil[4]=res.getString("password");
-                hasil[5]=res.getString("Hakakses");                
+                hasil[5]=res.getString("level");                
                 
                 model.addRow(hasil);
                 
@@ -211,6 +216,12 @@ public class viewPetugas extends javax.swing.JInternalFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Form Data Petugas");
+
+        cariPetugasTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cariPetugasTFKeyPressed(evt);
+            }
+        });
 
         noKtp1.setText("Cari data berdasarkan nama");
 
@@ -357,7 +368,7 @@ public class viewPetugas extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         cP.simpanPetugas();
         cP.bersihkan();
-        tampilDataPetugas();
+        tampilDataPetugas("");
     }//GEN-LAST:event_saveBTActionPerformed
 
     private void printTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printTFActionPerformed
@@ -384,19 +395,24 @@ public class viewPetugas extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         cP.updatePetugas();
         cP.bersihkan();
-        tampilDataPetugas();
+        tampilDataPetugas("");
     }//GEN-LAST:event_updateBTActionPerformed
 
     private void deleteBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBTActionPerformed
         // TODO add your handling code here:
         cP.deletePetugas();
-        tampilDataPetugas();
+        tampilDataPetugas("");
     }//GEN-LAST:event_deleteBTActionPerformed
 
     private void resetBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetBTActionPerformed
         // TODO add your handling code here:
         cP.bersihkan();
     }//GEN-LAST:event_resetBTActionPerformed
+
+    private void cariPetugasTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cariPetugasTFKeyPressed
+        // TODO add your handling code here:
+        tampilDataPetugas(cariPetugasTF.getText());
+    }//GEN-LAST:event_cariPetugasTFKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

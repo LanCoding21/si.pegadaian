@@ -172,14 +172,14 @@ public class viewLoginInternal extends javax.swing.JInternalFrame {
         
         try {
             PreparedStatement stmt = koneksiDatabase.getKoneksi()
-                    .prepareStatement("SELECT password, Hakakses FROM petugas WHERE username = ?");
+                    .prepareStatement("SELECT password, level FROM petugas WHERE username = ?");
             stmt.setString(1, usernameTF.getText());
             
             ResultSet rs = stmt.executeQuery();
             
             while (rs.next()) {
                 if (rs.getString("password").equals(password)) {                    
-                    level = rs.getString("Hakakses");
+                    level = rs.getString("level");
                     String h = hakAkses.getSelectedItem().toString();
                     if(level.equals(h)){
                         login = true;
