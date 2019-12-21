@@ -14,6 +14,9 @@ public class viewTransaksi extends javax.swing.JInternalFrame {
     /**
      * Creates new form viewTransaksi
      */
+    viewFormTransaksi vFT= new viewFormTransaksi();
+    viewDataTransaksi vDT= new viewDataTransaksi();
+    view
     public viewTransaksi() {
         initComponents();
     }
@@ -58,7 +61,7 @@ public class viewTransaksi extends javax.swing.JInternalFrame {
         );
         transaksiPanelLayout.setVerticalGroup(
             transaksiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 185, Short.MAX_VALUE)
+            .addGap(0, 189, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -68,9 +71,9 @@ public class viewTransaksi extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addComponent(transaksiBT)
-                .addGap(46, 46, 46)
+                .addGap(28, 28, 28)
                 .addComponent(dataTransaksiBT)
-                .addContainerGap(207, Short.MAX_VALUE))
+                .addContainerGap(225, Short.MAX_VALUE))
             .addComponent(transaksiPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -90,14 +93,14 @@ public class viewTransaksi extends javax.swing.JInternalFrame {
 
     private void transaksiBTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_transaksiBTMouseClicked
         // TODO add your handling code here:
-        viewFormTransaksi vFT= new viewFormTransaksi();
+        this.transaksiPanel.remove(vDT);
         this.transaksiPanel.add(vFT);
         vFT.show();
     }//GEN-LAST:event_transaksiBTMouseClicked
 
     private void dataTransaksiBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataTransaksiBTActionPerformed
         // TODO add your handling code here:
-        viewDataTransaksi vDT= new viewDataTransaksi();
+        this.transaksiPanel.remove(vFT);
         this.transaksiPanel.add(vDT);
         vDT.show();
     }//GEN-LAST:event_dataTransaksiBTActionPerformed
