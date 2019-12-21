@@ -16,7 +16,7 @@ public class viewTransaksi extends javax.swing.JInternalFrame {
      */
     viewFormTransaksi vFT= new viewFormTransaksi();
     viewDataTransaksi vDT= new viewDataTransaksi();
-    view
+    
     public viewTransaksi() {
         initComponents();
     }
