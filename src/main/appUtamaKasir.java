@@ -11,6 +11,7 @@ import si.pegadaian.view.viewLoginInternal;
 import si.pegadaian.view.viewMaster;
 import si.pegadaian.view.viewMasterKasir;
 import si.pegadaian.view.viewTransaksi;
+import si.pegadaian.view.viewTransaksiKasir;
 
 /**
  *
@@ -22,7 +23,7 @@ public class appUtamaKasir extends javax.swing.JFrame {
      * Creates new form appUtama
      */
     viewMasterKasir vMK= new viewMasterKasir();
-    viewTransaksi vT= new viewTransaksi();
+    viewTransaksiKasir vTK= new viewTransaksiKasir();
     public appUtamaKasir() {
         initComponents();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -150,7 +151,7 @@ public class appUtamaKasir extends javax.swing.JFrame {
 
     private void masterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_masterMouseClicked
         // TODO add your handling code here:
-        this.desktopUtama.remove(vT);
+        this.desktopUtama.remove(vTK);
         this.desktopUtama.add(vMK);
         vMK.show();
     }//GEN-LAST:event_masterMouseClicked
@@ -158,8 +159,8 @@ public class appUtamaKasir extends javax.swing.JFrame {
     private void transaksiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_transaksiMouseClicked
         // TODO add your handling code here:
         this.desktopUtama.remove(vMK);
-        this.desktopUtama.add(vT);
-        vT.show();
+        this.desktopUtama.add(vTK);
+        vTK.show();
     }//GEN-LAST:event_transaksiMouseClicked
 
     private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
