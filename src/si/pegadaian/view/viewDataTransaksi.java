@@ -35,8 +35,10 @@ public class viewDataTransaksi extends javax.swing.JInternalFrame {
 
         setClosable(true);
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/delete-property-32.png"))); // NOI18N
         jButton1.setText("Delete");
 
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/sinchronize-32.png"))); // NOI18N
         jButton2.setText("Refresh");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
