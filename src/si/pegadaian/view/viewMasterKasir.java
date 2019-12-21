@@ -17,6 +17,8 @@ public class viewMasterKasir extends javax.swing.JInternalFrame {
     /**
      * Creates new form viewMaster
      */
+    viewCustomer vM= new viewCustomer();
+    viewBarang vB= new viewBarang();
     public viewMasterKasir() {
         initComponents();
     }
@@ -43,6 +45,7 @@ public class viewMasterKasir extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setResizable(true);
 
+        customerBT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/User-Group-icon (1).png"))); // NOI18N
         customerBT.setText("Customer");
         customerBT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -50,6 +53,7 @@ public class viewMasterKasir extends javax.swing.JInternalFrame {
             }
         });
 
+        barangBT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/System-Package-icon (1).png"))); // NOI18N
         barangBT.setText("Barang");
         barangBT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -70,7 +74,7 @@ public class viewMasterKasir extends javax.swing.JInternalFrame {
         );
         masterPanelLayout.setVerticalGroup(
             masterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 230, Short.MAX_VALUE)
+            .addGap(0, 216, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -82,7 +86,7 @@ public class viewMasterKasir extends javax.swing.JInternalFrame {
                 .addComponent(customerBT)
                 .addGap(18, 18, 18)
                 .addComponent(barangBT)
-                .addContainerGap(530, Short.MAX_VALUE))
+                .addContainerGap(458, Short.MAX_VALUE))
             .addComponent(masterPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -101,7 +105,7 @@ public class viewMasterKasir extends javax.swing.JInternalFrame {
 
     private void customerBTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customerBTMouseClicked
         // TODO add your handling code here:
-        viewCustomer vM= new viewCustomer();
+        this.masterPanel.remove(vB);
         this.masterPanel.add(vM);
         vM.show();
         
@@ -110,7 +114,7 @@ public class viewMasterKasir extends javax.swing.JInternalFrame {
     private void barangBTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barangBTMouseClicked
         // TODO add your handling code here:
         
-        viewBarang vB= new viewBarang();
+        this.masterPanel.remove(vM);
         this.masterPanel.add(vB);
         vB.show();
         
