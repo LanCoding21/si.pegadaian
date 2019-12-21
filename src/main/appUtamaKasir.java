@@ -6,6 +6,7 @@
 package main;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import si.pegadaian.view.viewLoginInternal;
 import si.pegadaian.view.viewMaster;
 import si.pegadaian.view.viewMasterKasir;
@@ -161,8 +162,13 @@ public class appUtamaKasir extends javax.swing.JFrame {
 
     private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
         // TODO add your handling code here:
-        dispose();
-        new main.appUtama().setVisible(true);
+        int opsi =JOptionPane.showConfirmDialog(null, "Yakin Logout?");
+        switch(opsi){
+            case JOptionPane.YES_OPTION:
+                dispose();
+                new main.appUtama().setVisible(true);
+                
+        }
     }//GEN-LAST:event_jMenu3MouseClicked
 
     /**
