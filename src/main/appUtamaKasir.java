@@ -164,7 +164,10 @@ public class appUtamaKasir extends javax.swing.JFrame {
         // TODO add your handling code here:
         int opsi =JOptionPane.showConfirmDialog(null, "Yakin Logout?");
         switch(opsi){
-            
+            case JOptionPane.YES_OPTION:
+                dispose();
+                new main.appUtama().setVisible(true);
+                
         }
     }//GEN-LAST:event_jMenu3MouseClicked
 
