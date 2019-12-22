@@ -5,6 +5,14 @@
  */
 package si.pegadaian.view;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+import si.pegadaian.db.koneksiDatabase;
+
 /**
  *
  * @author user-pc
@@ -14,8 +22,60 @@ public class viewDataTransaksi extends javax.swing.JInternalFrame {
     /**
      * Creates new form viewDataTransaksi
      */
+    public DefaultTableModel modelTebus;
     public viewDataTransaksi() {
         initComponents();
+        modelTebus=new DefaultTableModel();
+        tabelDataTransaksi.setModel(modelTebus);
+        modelTebus.addColumn("ID");
+        modelTebus.addColumn("Nama Petugas");
+        modelTebus.addColumn("Nama Nasabah");
+        modelTebus.addColumn("Kode Barang");
+        modelTebus.addColumn("Jatuh Tempo");
+        modelTebus.addColumn("Tanggal Tebusan");
+        modelTebus.addColumn("Jumlah Pinjaman");
+        modelTebus.addColumn("Jumlah Tebusan");
+        modelTebus.addColumn("Denda");
+        modelTebus.addColumn("Total Tebusan");
+        modelTebus.addColumn("Keterangan");
+        
+        tampilDataTransaksi();
+    }
+    
+    public void tampilDataTransaksi(){
+        modelTebus.getDataVector().removeAllElements();
+        modelTebus.fireTableDataChanged();
+        
+        
+        String sql= "SELECT No_gadai,Nama_petugas,Nama_nasabah, Kode_barang, Jatuh_tempo, Tgl_tebusan, Jumlah_pinjaman,Jumlah_tebusan,Denda, Total_tebusan, Keterangan "
+                  + "FROM gadai gd, barang br, nasabah ns, petugas pt WHERE gd.Barang_Kode_barang=br.Kode_barang AND gd.Petugas_Nip=pt.Nip AND gd.Nasabah_Ktp=ns.Ktp ";
+        
+        try{
+            Statement stat=(Statement) koneksiDatabase.getKoneksi().createStatement();
+            ResultSet res= stat.executeQuery(sql);
+            
+            
+            while(res.next()){
+                Object[] hasil;
+                hasil =new Object[11];//karena ada 6 field ditabel pelanggan
+                hasil[0]=res.getInt("No_gadai");
+                hasil[1]=res.getString("Nama_petugas");
+                hasil[2]=res.getString("Nama_nasabah");
+                hasil[3]=res.getString("Kode_barang");
+                hasil[4]=res.getString("Jatuh_tempo");
+                hasil[5]=res.getString("Tgl_tebusan");
+                hasil[6]=res.getString("Jumlah_pinjaman");
+                hasil[7]=res.getString("Jumlah_tebusan");
+                hasil[7]=res.getString("Denda");
+                hasil[7]=res.getString("Total_tebusan");
+                hasil[10]=res.getString("Keterangan");
+
+                modelTebus.addRow(hasil);
+                
+            }
+        } catch(SQLException ex){
+            Logger.getLogger(viewBarang.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -27,23 +87,23 @@ public class viewDataTransaksi extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        deleteBT = new javax.swing.JButton();
+        refreshBT = new javax.swing.JButton();
+        cetakCB = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelDataTransaksi = new javax.swing.JTable();
 
         setClosable(true);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/delete-property-32.png"))); // NOI18N
-        jButton1.setText("Delete");
+        deleteBT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/delete-property-32.png"))); // NOI18N
+        deleteBT.setText("Delete");
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/sinchronize-32.png"))); // NOI18N
-        jButton2.setText("Refresh");
+        refreshBT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/sinchronize-32.png"))); // NOI18N
+        refreshBT.setText("Refresh");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cetakCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Cetak Berdasarkan--" }));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelDataTransaksi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -54,7 +114,7 @@ public class viewDataTransaksi extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabelDataTransaksi);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -63,15 +123,14 @@ public class viewDataTransaksi extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1134, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(deleteBT)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2)
+                        .addComponent(refreshBT)
                         .addGap(27, 27, 27)
-                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(cetakCB, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -79,9 +138,9 @@ public class viewDataTransaksi extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(deleteBT)
+                    .addComponent(refreshBT)
+                    .addComponent(cetakCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -92,10 +151,10 @@ public class viewDataTransaksi extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> cetakCB;
+    private javax.swing.JButton deleteBT;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JButton refreshBT;
+    private javax.swing.JTable tabelDataTransaksi;
     // End of variables declaration//GEN-END:variables
 }
