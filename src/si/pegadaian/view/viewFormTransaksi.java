@@ -37,6 +37,7 @@ public class viewFormTransaksi extends javax.swing.JInternalFrame {
     Date date = new Date();
     public controllerTransaksi cT;
     public DefaultTableModel model;
+    public DefaultTableModel modelTebus;
     private String sql="";
     public viewFormTransaksi() {
         initComponents();
@@ -58,6 +59,22 @@ public class viewFormTransaksi extends javax.swing.JInternalFrame {
         model.addColumn("Keterangan");
         
         tampilDataTransaksi("");
+        
+        modelTebus=new DefaultTableModel();
+        tabelTebusan.setModel(modelTebus);
+        modelTebus.addColumn("ID");
+        modelTebus.addColumn("Nama Petugas");
+        modelTebus.addColumn("Nama Nasabah");
+        modelTebus.addColumn("Kode Barang");
+        modelTebus.addColumn("Jatuh Tempo");
+        modelTebus.addColumn("Tanggal Tebusan");
+        modelTebus.addColumn("Jumlah Pinjaman");
+        modelTebus.addColumn("Jumlah Tebusan");
+        modelTebus.addColumn("Denda");
+        modelTebus.addColumn("Total Tebusan");
+        modelTebus.addColumn("Keterangan");
+        
+        tampilDataTebusan("");
     }
 
     public JComboBox<String> getBarangCB() {
@@ -112,7 +129,12 @@ public class viewFormTransaksi extends javax.swing.JInternalFrame {
             sql= "SELECT No_gadai,Nama_petugas,Nama_nasabah, Kode_barang, Tgl_gadai, Jatuh_tempo,Jumlah_pinjaman,Jumlah_tebusan,Keterangan "
                   + "FROM gadai gd, barang br, nasabah ns, petugas pt WHERE gd.Barang_Kode_barang=br.Kode_barang AND gd.Petugas_Nip=pt.Nip AND gd.Nasabah_Ktp=ns.Ktp ";
         }else{
-            sql="SELECT * FROM gadai WHERE Jatuh_tempo LIKE '"+data+"%'";
+            sql="SELECT No_gadai,Nama_petugas,Nama_nasabah, Kode_barang, Tgl_gadai, Jatuh_tempo,Jumlah_pinjaman,Jumlah_tebusan,Keterangan"
+                    + " FROM gadai gd, barang br, nasabah ns, petugas pt "
+                    + "WHERE gd.Barang_Kode_barang=br.Kode_barang "
+                    + "AND gd.Petugas_Nip=pt.Nip "
+                    + "AND gd.Nasabah_Ktp=ns.Ktp "
+                    + "AND Keterangan LIKE '"+data+"%'";
         }
         
         try{
@@ -134,6 +156,50 @@ public class viewFormTransaksi extends javax.swing.JInternalFrame {
                 hasil[8]=res.getString("Keterangan");
 
                 model.addRow(hasil);
+                
+            }
+        } catch(SQLException ex){
+            Logger.getLogger(viewBarang.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void tampilDataTebusan(String data){
+        modelTebus.getDataVector().removeAllElements();
+        modelTebus.fireTableDataChanged();
+        
+        if(data.equals("")){
+            sql= "SELECT No_gadai,Nama_petugas,Nama_nasabah, Kode_barang, Jatuh_tempo, Tgl_tebusan, Jumlah_pinjaman,Jumlah_tebusan,Denda, Total_tebusan, Keterangan "
+                  + "FROM gadai gd, barang br, nasabah ns, petugas pt WHERE gd.Barang_Kode_barang=br.Kode_barang AND gd.Petugas_Nip=pt.Nip AND gd.Nasabah_Ktp=ns.Ktp ";
+        }else{
+            sql="SELECT No_gadai,Nama_petugas,Nama_nasabah, Kode_barang, Tgl_gadai, Jatuh_tempo,Jumlah_pinjaman,Jumlah_tebusan,Keterangan"
+                    + " FROM gadai gd, barang br, nasabah ns, petugas pt "
+                    + "WHERE gd.Barang_Kode_barang=br.Kode_barang "
+                    + "AND gd.Petugas_Nip=pt.Nip "
+                    + "AND gd.Nasabah_Ktp=ns.Ktp "
+                    + "AND Jatuh_tempo LIKE '"+data+"%'";
+        }
+        
+        try{
+            Statement stat=(Statement) koneksiDatabase.getKoneksi().createStatement();
+            ResultSet res= stat.executeQuery(sql);
+            
+            
+            while(res.next()){
+                Object[] hasil;
+                hasil =new Object[11];//karena ada 6 field ditabel pelanggan
+                hasil[0]=res.getInt("No_gadai");
+                hasil[1]=res.getString("Nama_petugas");
+                hasil[2]=res.getString("Nama_nasabah");
+                hasil[3]=res.getString("Kode_barang");
+                hasil[4]=res.getString("Jatuh_tempo");
+                hasil[5]=res.getString("Tgl_tebusan");
+                hasil[6]=res.getString("Jumlah_pinjaman");
+                hasil[7]=res.getString("Jumlah_tebusan");
+                hasil[7]=res.getString("Denda");
+                hasil[7]=res.getString("Total_tebusan");
+                hasil[10]=res.getString("Keterangan");
+
+                modelTebus.addRow(hasil);
                 
             }
         } catch(SQLException ex){
@@ -268,7 +334,16 @@ public class viewFormTransaksi extends javax.swing.JInternalFrame {
         detailBT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/view-details-32.png"))); // NOI18N
         detailBT.setText("Detail");
 
-        jLabel16.setText("Cari dengan tanggal jatuh tempo");
+        jLabel16.setText("Cari dengan keterangan");
+
+        cariTransaksiTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cariTransaksiTFKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                cariTransaksiTFKeyTyped(evt);
+            }
+        });
 
         tabelTransaksi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -405,8 +480,8 @@ public class viewFormTransaksi extends javax.swing.JInternalFrame {
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 333, Short.MAX_VALUE)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(cariTransaksiTF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                        .addComponent(cariTransaksiTF, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel16)))))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -588,6 +663,16 @@ public class viewFormTransaksi extends javax.swing.JInternalFrame {
                 break;
         }
     }//GEN-LAST:event_transaksiCBActionPerformed
+
+    private void cariTransaksiTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cariTransaksiTFKeyPressed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_cariTransaksiTFKeyPressed
+
+    private void cariTransaksiTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cariTransaksiTFKeyTyped
+        // TODO add your handling code here:
+        tampilDataTransaksi(cariTransaksiTF.getText());
+    }//GEN-LAST:event_cariTransaksiTFKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
