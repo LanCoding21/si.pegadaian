@@ -45,6 +45,10 @@ public class viewFormTransaksiKasir extends javax.swing.JInternalFrame {
         DateFormat dateFormat1 = new SimpleDateFormat("dd MM,yyyy");
         tglSekarangTF.setText(dateFormat1.format(date));
         
+        tampil_customer();
+        tampil_barang();
+        tampil_gadai();
+        
         cTK=new controllerTransaksiKasir(this);
         
         model=new DefaultTableModel();
@@ -120,6 +124,58 @@ public class viewFormTransaksiKasir extends javax.swing.JInternalFrame {
 
     public JComboBox<String> getTransaksiCB() {
         return transaksiCB;
+    }
+    
+    public void tampil_customer(){
+        try{
+            Statement stat=(Statement) koneksiDatabase.getKoneksi().createStatement();
+            String sql1 = "SELECT * FROM nasabah";
+            ResultSet res= stat.executeQuery(sql1);
+            customerCB.removeAllItems();
+            customerCB.addItem("--Pilih Customer--");
+          
+            while(res.next()){
+                customerCB.addItem(res.getString("Ktp")+". "+res.getString("Nama_nasabah"));
+                
+            }
+        } catch(SQLException ex){
+            Logger.getLogger(viewFormTransaksi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+        public void tampil_barang(){
+        try{
+            Statement stat=(Statement) koneksiDatabase.getKoneksi().createStatement();
+            String sql1 = "SELECT * FROM barang";
+            ResultSet res= stat.executeQuery(sql1);
+            barangCB.removeAllItems();
+            barangCB.addItem("--Pilih Barang--");
+          
+            while(res.next()){
+                barangCB.addItem(res.getString("Kode_barang")+". "+res.getString("Nama_Barang"));
+                
+            }
+        } catch(SQLException ex){
+            Logger.getLogger(viewFormTransaksi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void tampil_gadai(){
+        try{
+            Statement stat=(Statement) koneksiDatabase.getKoneksi().createStatement();
+            String sql1 = "SELECT No_gadai,Nama_petugas,Nama_nasabah, Kode_barang, Jatuh_tempo, Tgl_tebusan, Jumlah_pinjaman,Jumlah_tebusan,Denda, Total_tebusan, Keterangan "
+                  + "FROM gadai gd, barang br, nasabah ns, petugas pt WHERE gd.Barang_Kode_barang=br.Kode_barang AND gd.Petugas_Nip=pt.Nip AND gd.Nasabah_Ktp=ns.Ktp ";
+            ResultSet res= stat.executeQuery(sql1);
+            dataGadaiCB.removeAllItems();
+            dataGadaiCB.addItem("--Pilih Gadai--");
+          
+            while(res.next()){
+                dataGadaiCB.addItem(res.getString("No_gadai")+". "+res.getString("Nama_nasabah")+". "+res.getString("Tgl_tebusan"));
+                
+            }
+        } catch(SQLException ex){
+            Logger.getLogger(viewFormTransaksi.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public void tampilDataTransaksi(String data){
@@ -206,6 +262,8 @@ public class viewFormTransaksiKasir extends javax.swing.JInternalFrame {
         } catch(SQLException ex){
             Logger.getLogger(viewBarang.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        
     }
     
     /**

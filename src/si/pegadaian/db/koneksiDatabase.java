@@ -9,6 +9,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import static java.util.Arrays.equals;
 import java.util.Properties;
@@ -38,5 +39,9 @@ public class koneksiDatabase {
         if(getKoneksi().equals(conn)){
             System.out.println("Sukses Terkoneksi");
         }
+    }
+
+    public ResultSet getData(String sql) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

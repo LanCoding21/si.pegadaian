@@ -44,6 +44,9 @@ public class viewFormTransaksi extends javax.swing.JInternalFrame {
         DateFormat dateFormat1 = new SimpleDateFormat("dd MM,yyyy");
         tglSekarangTF.setText(dateFormat1.format(date));
         
+        tampil_customer();
+        tampil_barang();
+        tampil_gadai();
         cT=new controllerTransaksi(this);
         
         model=new DefaultTableModel();
@@ -204,6 +207,58 @@ public class viewFormTransaksi extends javax.swing.JInternalFrame {
             }
         } catch(SQLException ex){
             Logger.getLogger(viewBarang.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void tampil_customer(){
+        try{
+            Statement stat=(Statement) koneksiDatabase.getKoneksi().createStatement();
+            String sql1 = "SELECT * FROM nasabah";
+            ResultSet res= stat.executeQuery(sql1);
+            customerCB.removeAllItems();
+            customerCB.addItem("--Pilih Customer--");
+          
+            while(res.next()){
+                customerCB.addItem(res.getString("Ktp")+". "+res.getString("Nama_nasabah"));
+                
+            }
+        } catch(SQLException ex){
+            Logger.getLogger(viewFormTransaksi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void tampil_barang(){
+        try{
+            Statement stat=(Statement) koneksiDatabase.getKoneksi().createStatement();
+            String sql1 = "SELECT * FROM barang";
+            ResultSet res= stat.executeQuery(sql1);
+            barangCB.removeAllItems();
+            barangCB.addItem("--Pilih Barang--");
+          
+            while(res.next()){
+                barangCB.addItem(res.getString("Kode_barang")+". "+res.getString("Nama_Barang"));
+                
+            }
+        } catch(SQLException ex){
+            Logger.getLogger(viewFormTransaksi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void tampil_gadai(){
+        try{
+            Statement stat=(Statement) koneksiDatabase.getKoneksi().createStatement();
+            String sql1 = "SELECT No_gadai,Nama_petugas,Nama_nasabah, Kode_barang, Jatuh_tempo, Tgl_tebusan, Jumlah_pinjaman,Jumlah_tebusan,Denda, Total_tebusan, Keterangan "
+                  + "FROM gadai gd, barang br, nasabah ns, petugas pt WHERE gd.Barang_Kode_barang=br.Kode_barang AND gd.Petugas_Nip=pt.Nip AND gd.Nasabah_Ktp=ns.Ktp ";
+            ResultSet res= stat.executeQuery(sql1);
+            dataGadaiCB.removeAllItems();
+            dataGadaiCB.addItem("--Pilih Gadai--");
+          
+            while(res.next()){
+                dataGadaiCB.addItem(res.getString("No_gadai")+". "+res.getString("Nama_nasabah")+". "+res.getString("Tgl_tebusan"));
+                
+            }
+        } catch(SQLException ex){
+            Logger.getLogger(viewFormTransaksi.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -391,7 +446,6 @@ public class viewFormTransaksi extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -399,15 +453,13 @@ public class viewFormTransaksi extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel1))
                                 .addGap(48, 48, 48))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(3, 3, 3)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(transaksiCB, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(customerCB, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(barangCB, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tglSekarangTF, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 8, Short.MAX_VALUE))
+                            .addComponent(transaksiCB, 0, 134, Short.MAX_VALUE)
+                            .addComponent(customerCB, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(barangCB, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tglSekarangTF)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel11)
                         .addGap(61, 61, 61)
@@ -427,8 +479,8 @@ public class viewFormTransaksi extends javax.swing.JInternalFrame {
                             .addComponent(jLabel8))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(dataGadaiCB, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jumlahTebusanTF)))
+                            .addComponent(jumlahTebusanTF)
+                            .addComponent(dataGadaiCB, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
@@ -578,7 +630,7 @@ public class viewFormTransaksi extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel11)
                             .addComponent(dendaTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
