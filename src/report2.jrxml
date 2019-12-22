@@ -19,7 +19,7 @@
 	<field name="Ktp" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="Nama" class="java.lang.String">
+	<field name="Nama_nasabah" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="Alamat" class="java.lang.String">
@@ -79,7 +79,7 @@
 			<staticText>
 				<reportElement uuid="eb250089-41ca-4709-a02b-a552e11465e2" style="Column header" x="138" y="0" width="138" height="15" forecolor="#736343"/>
 				<textElement/>
-				<text><![CDATA[Nama]]></text>
+				<text><![CDATA[Nama_nasabah]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="e2b003d3-f955-4119-858e-790024d33807" style="Column header" x="276" y="0" width="138" height="15" forecolor="#736343"/>
@@ -105,7 +105,7 @@
 				<textField isStretchWithOverflow="true">
 					<reportElement uuid="96c73b31-f25e-4d48-a817-a50e3544f3ea" style="Detail" x="138" y="0" width="138" height="15"/>
 					<textElement/>
-					<textFieldExpression><![CDATA[$F{Nama}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{Nama_nasabah}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
 					<reportElement uuid="7607cf2a-c786-4ddd-b22d-e109b313d1b7" style="Detail" x="276" y="0" width="138" height="15"/>

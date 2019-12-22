@@ -5,8 +5,7 @@
  */
 package si.pegadaian.controller;
 
-import si.pegadaian.model.modelTransaksi;
-import si.pegadaian.view.viewFormTransaksi;
+import si.pegadaian.model.modelTransaksiKasir;
 import si.pegadaian.view.viewFormTransaksiKasir;
 
 
@@ -14,13 +13,12 @@ import si.pegadaian.view.viewFormTransaksiKasir;
  *
  * @author user-pc
  */
-public class controllerTransaksi {
-    private modelTransaksi mT;
-    private viewFormTransaksi vFT;
+public class controllerTransaksiKasir {
+    private modelTransaksiKasir mTK;
+    private viewFormTransaksiKasir vFTK;
     
-    public controllerTransaksi(viewFormTransaksi vFT){
-        this.vFT=vFT;
-
+    public controllerTransaksiKasir(viewFormTransaksiKasir vFTK){
+        this.vFTK=vFTK;
     }
     
     
