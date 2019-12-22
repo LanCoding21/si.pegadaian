@@ -93,7 +93,7 @@ public class viewCustomer extends javax.swing.JInternalFrame {
                 Object[] hasil;
                 hasil =new Object[4];//karena ada 6 field ditabel pelanggan
                 hasil[0]=res.getInt("Ktp");
-                hasil[1]=res.getString("Nama");
+                hasil[1]=res.getString("Nama_nasabah");
                 hasil[2]=res.getString("Alamat");
                 hasil[3]=res.getString("Hp");
                 

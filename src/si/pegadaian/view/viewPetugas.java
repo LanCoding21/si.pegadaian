@@ -99,7 +99,7 @@ public class viewPetugas extends javax.swing.JInternalFrame {
                 Object[] hasil;
                 hasil =new Object[6];//karena ada 6 field ditabel pelanggan
                 hasil[0]=res.getInt("Nip");
-                hasil[1]=res.getString("Nama");
+                hasil[1]=res.getString("Nama_petugas");
                 hasil[2]=res.getString("alamat");
                 hasil[3]=res.getString("username");
                 hasil[4]=res.getString("password");

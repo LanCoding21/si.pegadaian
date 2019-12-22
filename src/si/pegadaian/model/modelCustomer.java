@@ -59,7 +59,7 @@ public class modelCustomer {
     }
     
     public void simpanDataCustomer(){
-        String sql=("INSERT INTO nasabah (Ktp, Nama, Alamat, Hp)"
+        String sql=("INSERT INTO nasabah (Ktp, Nama_nasabah, Alamat, Hp)"
                     +"VALUES('"+getKtpModel()+"', '"+getNamaModel()+"'"
                     + ", '"+getAlamatModel()+"','"+getHpModel()+"')");
         try{
@@ -73,7 +73,7 @@ public class modelCustomer {
         }
     
     public void updateDataCustomer(){
-    String sql="UPDATE nasabah SET Nama = '"+getNamaModel()+"'"
+    String sql="UPDATE nasabah SET Nama_nasabah = '"+getNamaModel()+"'"
             +",Alamat= '"+getAlamatModel()+"'"
             +",Hp='"+getHpModel()
             +"' WHERE Ktp='"+getKtpModel()+"'";

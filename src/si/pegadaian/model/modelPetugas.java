@@ -77,7 +77,7 @@ public class modelPetugas {
     }
     
     public void simpanDataPetugas(){
-        String sql=("INSERT INTO petugas (Nip, Nama, alamat, username, password, level)"
+        String sql=("INSERT INTO petugas (Nip, Nama_petugas, alamat, username, password, level)"
                     +"VALUES('"+getNipModel()+"', '"+getNamaModel()+"'"
                     + ", '"+getAlamatModel()+"','"+getUsernameModel()+"','"+getPasswordModel()+"'"
                     + ",'"+getLevelModel()+"')");
@@ -92,7 +92,7 @@ public class modelPetugas {
     }
     
     public void updateDataPetugas(){
-    String sql="UPDATE petugas SET Nama = '"+getNamaModel()+"'"
+    String sql="UPDATE petugas SET Nama_petugas = '"+getNamaModel()+"'"
             +",alamat= '"+getAlamatModel()+"'"
             +",username='"+getUsernameModel()+"'"
             +",password='"+getPasswordModel()+"'"
