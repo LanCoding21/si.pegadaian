@@ -23,5 +23,14 @@ public class controllerTransaksi {
 
     }
     
+    public void simpanTransaksiGadai(){
+        
+        
+        mT.simpanDataTransaksi();
+    }
+    
+    
+    
+    
     
 }

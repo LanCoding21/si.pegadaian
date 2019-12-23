@@ -5,7 +5,10 @@
  */
 package si.pegadaian.model;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import si.pegadaian.db.koneksiDatabase;
 
 /**
@@ -135,6 +138,33 @@ public class modelTransaksi {
 
     public void setKtpCustomerModel(int ktpCustomerModel) {
         this.ktpCustomerModel = ktpCustomerModel;
+    }
+    
+    public void simpanDataTransaksi(){
+        String sql=("INSERT INTO gadai (No_gadai,Nama_petugas,Nama_nasabah, Kode_barang, Jatuh_tempo, Tgl_tebusan, Jumlah_pinjaman,Jumlah_tebusan,Denda, Total_tebusan, Keterangan)"
+                    +"VALUES('"+getNoGadaiModel()+"', '"+getNipPetugasModel()+"'"
+                    + ", '"+getKtpCustomerModel()+"','"+getKodeBarangModel()+"','"+getJatuhTempoModel()+"'"
+                    + ",'"+getTanggalTebusanModel()+"','"+getJumlahPinjamanModel()+"','"+getDendaModel()+"','"+getTotalTebusanModel()+"'),'"+getKeteranganModel()+"'");
+        try{
+            PreparedStatement eksekusi=koneksi.getKoneksi().prepareStatement(sql);
+         eksekusi.execute();
+        
+         JOptionPane.showMessageDialog(null, "Data Berhasil Disimpan");
+        } catch (SQLException ex){
+           JOptionPane.showMessageDialog(null, "Data Gagal Dsimpan"+ex);
+          }
+    }
+    
+    public void deleteDataTransaksi(){
+    String sql="DELETE FROM gadai WHERE No_gadai="+"'"+getNoGadaiModel()+"'";
+    try {
+         PreparedStatement eksekusi=koneksi.getKoneksi().prepareStatement(sql);
+         eksekusi.execute();
+        
+         JOptionPane.showMessageDialog(null, "Data Berhasil Dihapus");
+        } catch (SQLException ex){
+           JOptionPane.showMessageDialog(null, "Data Gagal Dihapus"+ex);
+          }
     }
     
     
