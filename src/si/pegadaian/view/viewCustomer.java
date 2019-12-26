@@ -47,8 +47,8 @@ public class viewCustomer extends javax.swing.JInternalFrame {
         tabelCustomer.setModel(model);
         model.addColumn("No KTP");
         model.addColumn("Nama");
-        model.addColumn("No Hp");
         model.addColumn("Alamat");
+        model.addColumn("No Hp");
         
         tampilDataCustomer("");
         

@@ -21,11 +21,14 @@ public class appUtama extends javax.swing.JFrame {
     /**
      * Creates new form appUtama
      */
+    private static String nama;
+    private static String nip;
     home home= new home();
-    public appUtama() {
+    public appUtama(String nama, String nip) {
         initComponents();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        
+        this.nama=nama;
+        this.nip=nip;
         
         this.desktopUtama.add(home);
         home.show();
@@ -159,6 +162,7 @@ public class appUtama extends javax.swing.JFrame {
         viewLoginInternal login= new viewLoginInternal();
         this.desktopUtama.add(login);
         login.show();
+        
     }//GEN-LAST:event_jMenu1MouseClicked
 
     private void masterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_masterMouseClicked
@@ -180,7 +184,7 @@ public class appUtama extends javax.swing.JFrame {
 
     private void transaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transaksiActionPerformed
         // TODO add your handling code here:
-        viewTransaksi vT= new viewTransaksi();
+        viewTransaksi vT= new viewTransaksi(nama,nip);
         this.desktopUtama.add(vT);
         vT.show();
     }//GEN-LAST:event_transaksiActionPerformed
@@ -215,7 +219,7 @@ public class appUtama extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new appUtama().setVisible(true);
+                new appUtama(nama,nip).setVisible(true);
             }
         });
     }

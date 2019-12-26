@@ -8,6 +8,8 @@ package si.pegadaian.view;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTextField;
@@ -18,65 +20,78 @@ import si.pegadaian.db.koneksiDatabase;
  *
  * @author user-pc
  */
-public class viewListDataCustomer extends javax.swing.JFrame {
+public class viewListDataGadai extends javax.swing.JFrame {
 
     /**
      * Creates new form viewListDataPetugas
      */
-    public int ktp=0;
+    public int idGadai;
     private viewFormTransaksi vFT;
     private DefaultTableModel model;
     private String sql="";
-    public viewListDataCustomer(viewFormTransaksi vFT) {
+    public viewListDataGadai(viewFormTransaksi vFT) {
         initComponents();
         this.vFT=vFT;
         
         model=new DefaultTableModel();
-        tabelListDataCustomer.setModel(model);
-        model.addColumn("No KTP");
-        model.addColumn("Nama");
-        model.addColumn("Alamat");
-        model.addColumn("No Hp");
-        
-        tampilDataCustomer("");
+        tabelListDataGadai.setModel(model);
+        model.addColumn("ID");
+        model.addColumn("Nama Petugas");
+        model.addColumn("Nama Nasabah");
+        model.addColumn("Kode Barang");
+        model.addColumn("Tanggal Gadai");
+        model.addColumn("Jatuh Tempo");
+        model.addColumn("Jumlah Pinjaman");
+        model.addColumn("Jumlah Tebusan");
+        model.addColumn("Keterangan");
+
+        tampilDataGadai("");
     }
 
     public JTextField getCariTF() {
         return cariTF;
     }
     
-    public void tampilDataCustomer(String data){
+    public void tampilDataGadai(String data) {
         model.getDataVector().removeAllElements();
         model.fireTableDataChanged();
-        
-       if(data.equals("")){
-            sql= "SELECT * FROM nasabah";
-        }else{
-            sql="SELECT * FROM nasabah WHERE Nama_nasabah LIKE '"+data+"%'";
+
+        if (data.equals("")) {
+            sql = "SELECT No_gadai,Nama_petugas,Nama_nasabah, Kode_barang, Tgl_gadai, Jatuh_tempo,Jumlah_pinjaman,Jumlah_tebusan,Keterangan "
+                    + "FROM gadai gd, barang br, nasabah ns, petugas pt WHERE gd.Barang_Kode_barang=br.Kode_barang AND gd.Petugas_Nip=pt.Nip AND gd.Nasabah_Ktp=ns.Ktp AND Keterangan='Belum Ditebus' ";
+        } else {
+            sql = "SELECT No_gadai,Nama_petugas,Nama_nasabah, Kode_barang, Tgl_gadai, Jatuh_tempo,Jumlah_pinjaman,Jumlah_tebusan,Keterangan"
+                    + " FROM gadai gd, barang br, nasabah ns, petugas pt "
+                    + "WHERE gd.Barang_Kode_barang=br.Kode_barang "
+                    + "AND gd.Petugas_Nip=pt.Nip "
+                    + "AND gd.Nasabah_Ktp=ns.Ktp "
+                    + "AND Keterangan LIKE '" + data + "%'";
         }
-        
-        try{
-            Statement stat=(Statement) koneksiDatabase.getKoneksi().createStatement();
-            ResultSet res= stat.executeQuery(sql);
-            
-            
-            while(res.next()){
+
+        try {
+            Statement stat = (Statement) koneksiDatabase.getKoneksi().createStatement();
+            ResultSet res = stat.executeQuery(sql);
+
+            while (res.next()) {
                 Object[] hasil;
-                hasil =new Object[4];//karena ada 6 field ditabel pelanggan
-                hasil[0]=res.getInt("Ktp");
-                hasil[1]=res.getString("Nama_nasabah");
-                hasil[2]=res.getString("Alamat");
-                hasil[3]=res.getString("Hp");
-                
-                model.addRow(hasil);                
-               
-                
+                hasil = new Object[9];//karena ada 6 field ditabel pelanggan
+                hasil[0] = res.getInt("No_gadai");
+                hasil[1] = res.getString("Nama_petugas");
+                hasil[2] = res.getString("Nama_nasabah");
+                hasil[3] = res.getString("Kode_barang");
+                hasil[4] = res.getString("Tgl_gadai");
+                hasil[5] = res.getString("Jatuh_tempo");
+                hasil[6] = res.getString("Jumlah_pinjaman");
+                hasil[7] = res.getString("Jumlah_tebusan");
+                hasil[8] = res.getString("Keterangan");
+
+                model.addRow(hasil);
+
             }
-        } catch(SQLException ex){
-            Logger.getLogger(viewListDataCustomer.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(viewBarang.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -89,9 +104,9 @@ public class viewListDataCustomer extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         cariTF = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabelListDataCustomer = new javax.swing.JTable();
+        tabelListDataGadai = new javax.swing.JTable();
 
-        jLabel1.setText("Cari Nama Petugas");
+        jLabel1.setText("Cari Nama Customer");
 
         cariTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,7 +119,7 @@ public class viewListDataCustomer extends javax.swing.JFrame {
             }
         });
 
-        tabelListDataCustomer.setModel(new javax.swing.table.DefaultTableModel(
+        tabelListDataGadai.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -115,12 +130,12 @@ public class viewListDataCustomer extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tabelListDataCustomer.addMouseListener(new java.awt.event.MouseAdapter() {
+        tabelListDataGadai.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabelListDataCustomerMouseClicked(evt);
+                tabelListDataGadaiMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tabelListDataCustomer);
+        jScrollPane1.setViewportView(tabelListDataGadai);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -158,25 +173,32 @@ public class viewListDataCustomer extends javax.swing.JFrame {
 
     private void cariTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cariTFKeyPressed
         // TODO add your handling code here:
-        tampilDataCustomer(cariTF.getText());
+        tampilDataGadai(cariTF.getText());
     }//GEN-LAST:event_cariTFKeyPressed
 
-    private void tabelListDataCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelListDataCustomerMouseClicked
+    private void tabelListDataGadaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelListDataGadaiMouseClicked
         // TODO add your handling code here:
-        int ambilRow=tabelListDataCustomer.getSelectedRow();
+        String date1;
+        String pattern="yyyy-MM-dd";
+        SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+        Date date = new Date();
+        int ambilRow=tabelListDataGadai.getSelectedRow();
 //        vFT.getCustomerTF().setText(tabelListDataPetugas.getValueAt(ambilRow, 0).toString());
-        vFT.getCustomerTF().setText(tabelListDataCustomer.getValueAt(ambilRow,1).toString()/*+". "+tabelListDataCustomer.getValueAt(ambilRow,1).toString()*/);
-        String n = tabelListDataCustomer.getValueAt(ambilRow,0).toString();
-        ktp = Integer.parseInt(n);
+        vFT.getJumlahPinjamanTF().setText(tabelListDataGadai.getValueAt(ambilRow,6).toString()/*+". "+tabelListDataCustomer.getValueAt(ambilRow,1).toString()*/);
+        vFT.getJumlahTebusanTF().setText(tabelListDataGadai.getValueAt(ambilRow,7).toString()/*+". "+tabelListDataCustomer.getValueAt(ambilRow,1).toString()*/);
+        vFT.getDataGadaiTF().setText(tabelListDataGadai.getValueAt(ambilRow,2).toString()/*+". "+tabelListDataCustomer.getValueAt(ambilRow,1).toString()*/);
+        
+        String g= tabelListDataGadai.getValueAt(ambilRow, 0).toString();
+        idGadai= Integer.parseInt(g);
         vFT.getCustomerTF().requestFocus();
         dispose();
-    }//GEN-LAST:event_tabelListDataCustomerMouseClicked
+    }//GEN-LAST:event_tabelListDataGadaiMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField cariTF;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tabelListDataCustomer;
+    private javax.swing.JTable tabelListDataGadai;
     // End of variables declaration//GEN-END:variables
 }

@@ -74,7 +74,7 @@ public class viewMasterKasir extends javax.swing.JInternalFrame {
         );
         masterPanelLayout.setVerticalGroup(
             masterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 216, Short.MAX_VALUE)
+            .addGap(0, 508, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -86,7 +86,7 @@ public class viewMasterKasir extends javax.swing.JInternalFrame {
                 .addComponent(customerBT)
                 .addGap(18, 18, 18)
                 .addComponent(barangBT)
-                .addContainerGap(458, Short.MAX_VALUE))
+                .addContainerGap(633, Short.MAX_VALUE))
             .addComponent(masterPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -97,7 +97,8 @@ public class viewMasterKasir extends javax.swing.JInternalFrame {
                     .addComponent(customerBT)
                     .addComponent(barangBT))
                 .addGap(18, 18, 18)
-                .addComponent(masterPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(masterPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();

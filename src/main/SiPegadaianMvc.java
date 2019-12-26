@@ -12,13 +12,14 @@ import si.pegadaian.view.viewMaster;
  * @author user-pc
  */
 public class SiPegadaianMvc {
-
+    private static String nama="";
+    private static String nip="";
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        appUtama utama=new appUtama();
+        appUtama utama=new appUtama(nama,nip);
         utama.setVisible(true);
 //        view vM=new viewMaster();
 //        vM.setVisible(true);

@@ -17,11 +17,11 @@ import si.pegadaian.db.koneksiDatabase;
  */
 public class modelTransaksi {
     private int noGadaiModel;
-    private Date tanggalModel;
-    private Date jatuhTempoModel;
+    private String tanggalModel;
+    private String jatuhTempoModel;
     private double jumlahPinjamanModel;
     private String terbilangModel;
-    private Date tanggalTebusanModel;
+    private String tanggalTebusanModel;
     private double jumlahTebusanModel;
     private double dendaModel;
     private double totalTebusanModel;
@@ -44,19 +44,19 @@ public class modelTransaksi {
         this.noGadaiModel = noGadaiModel;
     }
 
-    public Date getTanggalModel() {
+    public String getTanggalModel() {
         return tanggalModel;
     }
 
-    public void setTanggalModel(Date tanggalModel) {
+    public void setTanggalModel(String tanggalModel) {
         this.tanggalModel = tanggalModel;
     }
 
-    public Date getJatuhTempoModel() {
+    public String getJatuhTempoModel() {
         return jatuhTempoModel;
     }
 
-    public void setJatuhTempoModel(Date jatuhTempoModel) {
+    public void setJatuhTempoModel(String jatuhTempoModel) {
         this.jatuhTempoModel = jatuhTempoModel;
     }
 
@@ -76,11 +76,11 @@ public class modelTransaksi {
         this.terbilangModel = terbilangModel;
     }
 
-    public Date getTanggalTebusanModel() {
+    public String getTanggalTebusanModel() {
         return tanggalTebusanModel;
     }
 
-    public void setTanggalTebusanModel(Date tanggalTebusanModel) {
+    public void setTanggalTebusanModel(String tanggalTebusanModel) {
         this.tanggalTebusanModel = tanggalTebusanModel;
     }
 
@@ -141,10 +141,22 @@ public class modelTransaksi {
     }
     
     public void simpanDataTransaksi(){
-        String sql=("INSERT INTO gadai (No_gadai,Nama_petugas,Nama_nasabah, Kode_barang, Jatuh_tempo, Tgl_tebusan, Jumlah_pinjaman,Jumlah_tebusan,Denda, Total_tebusan, Keterangan)"
-                    +"VALUES('"+getNoGadaiModel()+"', '"+getNipPetugasModel()+"'"
-                    + ", '"+getKtpCustomerModel()+"','"+getKodeBarangModel()+"','"+getJatuhTempoModel()+"'"
-                    + ",'"+getTanggalTebusanModel()+"','"+getJumlahPinjamanModel()+"','"+getDendaModel()+"','"+getTotalTebusanModel()+"'),'"+getKeteranganModel()+"'");
+        String sql=("INSERT INTO gadai (Tgl_gadai,Jatuh_tempo,Jumlah_pinjaman,Jumlah_tebusan,Keterangan,Barang_Kode_barang,Petugas_Nip,Nasabah_Ktp)"
+                    +"VALUES('"+getTanggalModel()+"'"
+                    + ", '"+getJatuhTempoModel()+"','"+getJumlahPinjamanModel()+"'"
+                    + ",'"+getJumlahTebusanModel()+"','"+getKeteranganModel()+"','"+getKodeBarangModel()+"','"+getNipPetugasModel()+"','"+getKtpCustomerModel()+"')");
+        try{
+            PreparedStatement eksekusi=koneksi.getKoneksi().prepareStatement(sql);
+         eksekusi.execute();
+        
+         JOptionPane.showMessageDialog(null, "Data Berhasil Disimpan");
+        } catch (SQLException ex){
+           JOptionPane.showMessageDialog(null, "Data Gagal Dsimpan"+ex);
+          }
+    }
+    
+    public void parsing(){
+        String sql=("SELECT No_gadai FROM gadai");
         try{
             PreparedStatement eksekusi=koneksi.getKoneksi().prepareStatement(sql);
          eksekusi.execute();
@@ -160,12 +172,44 @@ public class modelTransaksi {
     try {
          PreparedStatement eksekusi=koneksi.getKoneksi().prepareStatement(sql);
          eksekusi.execute();
+         
         
          JOptionPane.showMessageDialog(null, "Data Berhasil Dihapus");
         } catch (SQLException ex){
            JOptionPane.showMessageDialog(null, "Data Gagal Dihapus"+ex);
           }
     }
+    
+    public void updateDataTebus(){
+    String sql="UPDATE gadai SET Tgl_tebusan = '"+getTanggalTebusanModel()+"'"
+            +",Jumlah_tebusan= '"+getJumlahTebusanModel()+"'"
+            +",Denda='"+getDendaModel()+"'"
+            +",Total_tebusan='"+getTotalTebusanModel()+"'"
+            +",Keterangan='"+getKeteranganModel()
+            +"' WHERE No_gadai='"+getNoGadaiModel()+"'";
+    try {
+         PreparedStatement eksekusi=koneksi.getKoneksi().prepareStatement(sql);
+         eksekusi.execute();
+        
+         JOptionPane.showMessageDialog(null, "Data Berhasil Ditebus");
+        } catch (SQLException ex){
+           JOptionPane.showMessageDialog(null, "Data Gagal Ditebus"+ex);
+          }
+    }
+    
+    public void updateDataPerpanjang(){
+    String sql="UPDATE gadai SET Jatuh_tempo = '"+getJatuhTempoModel()+"' WHERE No_gadai='"+getNoGadaiModel()+"'";
+    try {
+         PreparedStatement eksekusi=koneksi.getKoneksi().prepareStatement(sql);
+         eksekusi.execute();
+        
+         JOptionPane.showMessageDialog(null, "Jatuh Tempo Berhasil Diperpanjang");
+        } catch (SQLException ex){
+           JOptionPane.showMessageDialog(null, "Jatuh Tempo Gagal Diperpanjang"+ex);
+          }
+    }
+    
+    
     
     
 }

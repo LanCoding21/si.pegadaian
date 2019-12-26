@@ -93,7 +93,7 @@ public class viewMaster extends javax.swing.JInternalFrame {
         );
         masterPanelLayout.setVerticalGroup(
             masterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 212, Short.MAX_VALUE)
+            .addGap(0, 483, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -107,7 +107,7 @@ public class viewMaster extends javax.swing.JInternalFrame {
                 .addComponent(barangBT)
                 .addGap(18, 18, 18)
                 .addComponent(petugasBT)
-                .addContainerGap(333, Short.MAX_VALUE))
+                .addContainerGap(769, Short.MAX_VALUE))
             .addComponent(masterPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(

@@ -19,7 +19,7 @@ import si.pegadaian.db.koneksiDatabase;
  * @author user-pc
  */
 public class viewListDataBarang extends javax.swing.JFrame {
-
+    public int id_barang=0;
     /**
      * Creates new form viewListDataPetugas
      */
@@ -92,7 +92,7 @@ public class viewListDataBarang extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelListDataBarang = new javax.swing.JTable();
 
-        jLabel1.setText("Cari Nama Petugas");
+        jLabel1.setText("Cari Nama Barang");
 
         cariTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -166,8 +166,9 @@ public class viewListDataBarang extends javax.swing.JFrame {
         // TODO add your handling code here:
         int ambilRow=tabelListDataBarang.getSelectedRow();
 //        vFT.getCustomerTF().setText(tabelListDataPetugas.getValueAt(ambilRow, 0).toString());
-        vFT.getBarangTF().setText(tabelListDataBarang.getValueAt(ambilRow,1).toString());
-        
+        vFT.getBarangTF().setText(tabelListDataBarang.getValueAt(ambilRow,1).toString()/*+". "+tabelListDataBarang.getValueAt(ambilRow,1).toString()*/);
+        String id = tabelListDataBarang.getValueAt(ambilRow,0).toString();
+        id_barang = Integer.parseInt(id);
         vFT.getBarangTF().requestFocus();
         dispose();
     }//GEN-LAST:event_tabelListDataBarangMouseClicked

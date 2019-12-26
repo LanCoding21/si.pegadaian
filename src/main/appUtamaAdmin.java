@@ -16,16 +16,24 @@ import si.pegadaian.view.viewTransaksi;
  * @author user-pc
  */
 public class appUtamaAdmin extends javax.swing.JFrame {
-
+    private static String nama;
+    private static String nip;
     /**
      * Creates new form appUtama
      */
-    viewMaster vM= new viewMaster();
-    viewTransaksi vT= new viewTransaksi();
     
-    public appUtamaAdmin() {
+    viewMaster vM;
+    viewTransaksi vT;
+    home h;
+    public appUtamaAdmin(String nama, String nip) {
         initComponents();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.nama = nama;
+        this.nip=nip;
+        vM= new viewMaster();
+        vT= new viewTransaksi(nama,nip);
+        h=new home();
+        
     }
 
     /**
@@ -164,6 +172,7 @@ public class appUtamaAdmin extends javax.swing.JFrame {
 
     private void transaksiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_transaksiMouseClicked
         // TODO add your handling code here:
+        
         this.desktopUtama.remove(vM);
         this.desktopUtama.add(vT);
         vT.show();
@@ -180,7 +189,7 @@ public class appUtamaAdmin extends javax.swing.JFrame {
         switch(opsi){
             case JOptionPane.YES_OPTION:
                 dispose();
-                new main.appUtama().setVisible(true);
+                new main.appUtama(nama,nip).setVisible(true);
                 
         }
         
@@ -217,7 +226,7 @@ public class appUtamaAdmin extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new appUtamaAdmin().setVisible(true);
+                new appUtamaAdmin(nama,nip).setVisible(true);
             }
         });
     }

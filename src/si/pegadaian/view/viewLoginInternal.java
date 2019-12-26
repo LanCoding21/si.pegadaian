@@ -33,6 +33,8 @@ public class viewLoginInternal extends javax.swing.JInternalFrame {
      */
     private controllerLogin cL;
     private viewMaster vM;
+    private String nama = "";
+    private String nip = "";
 
     public viewLoginInternal(viewMaster vM) {
         this.vM= vM;
@@ -115,37 +117,36 @@ public class viewLoginInternal extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(273, 273, 273)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(145, 145, 145)
-                        .addComponent(jLabel1))
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(usernameTF))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
+                                .addComponent(loginBT)
                                 .addGap(18, 18, 18)
-                                .addComponent(usernameTF))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel3))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(loginBT)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(batalBT))
-                                    .addComponent(hakAkses, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(passwordPF))))))
-                .addContainerGap(87, Short.MAX_VALUE))
+                                .addComponent(batalBT))
+                            .addComponent(hakAkses, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(passwordPF, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(249, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(337, 337, 337))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(93, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(59, 59, 59)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(usernameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -161,7 +162,7 @@ public class viewLoginInternal extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(loginBT)
                     .addComponent(batalBT))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addGap(119, 119, 119))
         );
 
         pack();
@@ -175,22 +176,29 @@ public class viewLoginInternal extends javax.swing.JInternalFrame {
         
         try {
             PreparedStatement stmt = koneksiDatabase.getKoneksi()
-                    .prepareStatement("SELECT password, level FROM petugas WHERE username = ?");
+                    .prepareStatement("SELECT Nip,Nama_petugas,password, level FROM petugas WHERE username = ?");
             stmt.setString(1, usernameTF.getText());
             
             ResultSet rs = stmt.executeQuery();
             
             while (rs.next()) {
+                
+          
                 if (rs.getString("password").equals(password)) {                    
                     level = rs.getString("level");
                     String h = hakAkses.getSelectedItem().toString();
+                    
                     if(level.equals(h)){
-                        login = true;
+                        login = true;                        
+                        nama = rs.getString("Nama_petugas");
+                        nip=rs.getString("Nip");
+
                     }else{
                         login = false;
                     }
                 }
             }
+            
         } catch (SQLException ex) {
             Logger.getLogger(viewLoginInternal.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -202,7 +210,7 @@ public class viewLoginInternal extends javax.swing.JInternalFrame {
                 
                 case "Admin":
                     dispose();
-                    appUtamaAdmin aUA=new appUtamaAdmin();
+                    appUtamaAdmin aUA=new appUtamaAdmin(nama,nip);
                     aUA.setVisible(true);
                     break;
                 case "Kasir":

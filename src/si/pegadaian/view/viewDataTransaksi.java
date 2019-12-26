@@ -66,8 +66,8 @@ public class viewDataTransaksi extends javax.swing.JInternalFrame {
                 hasil[5]=res.getString("Tgl_tebusan");
                 hasil[6]=res.getString("Jumlah_pinjaman");
                 hasil[7]=res.getString("Jumlah_tebusan");
-                hasil[7]=res.getString("Denda");
-                hasil[7]=res.getString("Total_tebusan");
+                hasil[8]=res.getString("Denda");
+                hasil[9]=res.getString("Total_tebusan");
                 hasil[10]=res.getString("Keterangan");
 
                 modelTebus.addRow(hasil);

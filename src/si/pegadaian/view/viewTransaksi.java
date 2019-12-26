@@ -5,21 +5,33 @@
  */
 package si.pegadaian.view;
 
+import javax.swing.JLabel;
+
 /**
  *
  * @author user-pc
  */
 public class viewTransaksi extends javax.swing.JInternalFrame {
-
+    private String nama;
+    private String nip;
     /**
      * Creates new form viewTransaksi
      */
-    viewFormTransaksi vFT= new viewFormTransaksi();
-    viewDataTransaksi vDT= new viewDataTransaksi();
+    viewFormTransaksi vFT;
+    viewDataTransaksi vDT;
     
-    public viewTransaksi() {
+    public viewTransaksi(String nama, String nip) {
         initComponents();
+        this.nama=nama;
+        this.nip=nip;
+        vFT= new viewFormTransaksi(nama,nip);
+        vDT= new viewDataTransaksi();
+        
     }
+
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -57,11 +69,11 @@ public class viewTransaksi extends javax.swing.JInternalFrame {
         transaksiPanel.setLayout(transaksiPanelLayout);
         transaksiPanelLayout.setHorizontalGroup(
             transaksiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 882, Short.MAX_VALUE)
         );
         transaksiPanelLayout.setVerticalGroup(
             transaksiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 189, Short.MAX_VALUE)
+            .addGap(0, 476, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -73,8 +85,10 @@ public class viewTransaksi extends javax.swing.JInternalFrame {
                 .addComponent(transaksiBT)
                 .addGap(28, 28, 28)
                 .addComponent(dataTransaksiBT)
-                .addContainerGap(225, Short.MAX_VALUE))
-            .addComponent(transaksiPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(transaksiPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -83,14 +97,15 @@ public class viewTransaksi extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(transaksiBT)
                     .addComponent(dataTransaksiBT))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(transaksiPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    
     private void transaksiBTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_transaksiBTMouseClicked
         // TODO add your handling code here:
         this.transaksiPanel.remove(vDT);

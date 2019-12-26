@@ -18,7 +18,8 @@ import si.pegadaian.view.viewTransaksiKasir;
  * @author user-pc
  */
 public class appUtamaKasir extends javax.swing.JFrame {
-
+    String nama;
+    String nip;
     /**
      * Creates new form appUtama
      */
@@ -169,7 +170,7 @@ public class appUtamaKasir extends javax.swing.JFrame {
         switch(opsi){
             case JOptionPane.YES_OPTION:
                 dispose();
-                new main.appUtama().setVisible(true);
+                new main.appUtama(nama,nip).setVisible(true);
                 
         }
     }//GEN-LAST:event_jMenu3MouseClicked
